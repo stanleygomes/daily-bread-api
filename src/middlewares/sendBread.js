@@ -1,21 +1,31 @@
+const SECRET_KEY = process.env.SECRET_KEY;
+
 export default async function validateRequest(req, res) {
     if (req.method !== 'GET') {
-        return res
-          .status(405)
-          .json({ message: 'Method not allowed!' });
+        return {
+            status: 405,
+            message: 'Method not allowed!'
+        }
     }
 
     const { secret } = req.query;
 
     if (!secret) {
-        return res
-          .status(400)
-          .json({ message: 'Secret not informed!' });
+        return {
+            status: 400,
+            message: 'Secret not informed!'
+        }
     }
 
-    if (secret !== process.env.SECRET_KEY) {
-        return res
-          .status(400)
-          .json({ message: 'Secret is invalid!' });
+    if (secret !== SECRET_KEY) {
+        return {
+            status: 400,
+            message: 'Secret is invalid!'
+        }
+    }
+
+    return {
+        status: 200,
+        message: 'Secret is valid!'
     }
 }
