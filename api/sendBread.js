@@ -1,20 +1,17 @@
 import 'module-alias/register';
 import Pino from '@/utils/logger.js'
+import validateRequest from '@/middlewares/sendBread.js'
+
+const SECRET_KEY = process.env.SECRET_KEY;
 
 export default async function handler(req, res) {
     if (req.method !== 'GET') {
         return res
           .status(405)
-          .json({ message: 'Method not allowed' });
+          .json({ message: 'Method not allowed!' });
     }
 
-    const { secret } = req.query;
-
-    if (!secret) {
-        return res
-          .status(400)
-          .json({ message: 'Secret not informed' });
-    }
+    validateRequest(req, res);
 
     try {
         return res.status(200).json({ message: 'Email sent successfully!' });
@@ -23,6 +20,6 @@ export default async function handler(req, res) {
 
         return res
           .status(500)
-          .json({ message: 'Internal server error' });
+          .json({ message: 'Internal server error!' });
     }
 }
