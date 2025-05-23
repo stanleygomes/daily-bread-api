@@ -1,0 +1,29 @@
+{
+  "name": "daily-bread",
+  "version": "1.0.0",
+  "description": "Daily Bread App",
+  "main": "api/sendText.js",
+  "scripts": {
+    "start": "vercel dev",
+    "build": "echo 'No build step required'",
+    "deploy": "vercel --prod"
+  },
+  "_moduleAliases": {
+    "@": "src"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "dotenv": "^16.5.0",
+    "module-alias": "^2.2.3",
+    "nodemailer": "^6.9.1",
+    "pino": "^9.7.0"
+  },
+  "devDependencies": {
+    "pino-pretty": "^13.0.0",
+    "vercel": "^42.1.1"
+  },
+  "engines": {
+    "node": ">=20.x"
+  },
+  "license": "MIT"
+}
