@@ -1,6 +1,7 @@
 import 'module-alias/register';
-import Pino from '@/utils/logger.js';
-import validateRequest from '@/middlewares/sendBread';
+import { logger } from '@/utils/logger';
+import { validateRequest } from '@/middlewares/sendBread';
+import { processSendBread } from '@/usecases/sendBreadUseCase'
 
 export default async function handler(req, res) {
   const result = await validateRequest(req);
@@ -9,9 +10,10 @@ export default async function handler(req, res) {
   }
 
   try {
+    await processSendBread()
     return res.status(200).json({ message: 'Email sent successfully!' });
   } catch (error) {
-    Pino.error(error);
+    logger.error(error);
     return res.status(500).json({ message: 'Internal server error!' });
   }
 }

@@ -14,10 +14,12 @@
     "@": "src"
   },
   "dependencies": {
+    "@huggingface/inference": "^3.14.0",
     "axios": "^0.27.2",
     "dotenv": "^16.5.0",
     "module-alias": "^2.2.3",
     "nodemailer": "^6.9.1",
+    "openai": "^4.103.0",
     "pino": "^9.7.0"
   },
   "devDependencies": {

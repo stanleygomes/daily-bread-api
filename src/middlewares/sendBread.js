@@ -1,6 +1,6 @@
-const SECRET_KEY = process.env.SECRET_KEY;
+const { SECRET_KEY } = process.env;
 
-export default async function validateRequest(req) {
+export async function validateRequest(req) {
   if (req.method !== 'GET') {
     return {
       status: 405,
