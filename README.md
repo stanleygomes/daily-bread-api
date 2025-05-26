@@ -1,6 +1,6 @@
 # daily-bread
 
-Daily Bread - A mensagem diária direto no e-mail
+Daily Bread - A palavra diária direto no e-mail
 
 ![image](https://github.com/user-attachments/assets/15e0692f-b56d-461b-bf53-70f75098381a)
 
@@ -21,7 +21,7 @@ This project is a Node.js backend application designed to be hosted on Vercel Fu
    ```
 
 3. **Environment Variables**
-   Set up the necessary environment variables for the Hugging Face API and email service. You can create a `.env` file in the root directory with the following variables, following the `.env.template` file.
+   Set up the necessary environment variables. You can create a `.env` file in the root directory with the following variables, following the `.env.template` file.
 
 4. **Run the Application Locally**
    You can test the API locally using Vercel CLI:
