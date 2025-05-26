@@ -1,0 +1,13 @@
+name: Daily Bread Trigger
+
+on:
+  schedule:
+    - cron: '0 4 * * *' # 1:00 UTC todos os dias
+
+jobs:
+  call-endpoint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Daily Bread API
+        run: |
+          curl -X GET "https://daily-bread-omega.vercel.app/api/sendBread?secret=SUA_SECRET"
