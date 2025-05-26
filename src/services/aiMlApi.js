@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { config } from '@/config/config';
-import { logger } from '@/utils/logger';
+import { config } from '../config/config';
+import { logger } from '../utils/logger';
 
 const { apiUrl, apiKey, maxTokens } = config.services.aimlapi;
 const model = config.services.aimlapi.models.text;

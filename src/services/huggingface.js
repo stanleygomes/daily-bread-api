@@ -1,8 +1,8 @@
 // import axios from 'axios';
 import { InferenceClient } from "@huggingface/inference";
 
-import { logger } from '@/utils/logger';
-import { config } from '@/config/config';
+import { logger } from '../utils/logger';
+import { config } from '../config/config';
 
 const token = config.services.huggingface.accessToken;
 

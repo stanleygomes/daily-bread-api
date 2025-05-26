@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { config } from '@/config/config.js';
-import { logger } from '@/utils/logger';
+import { config } from '../config/config.js';
+import { logger } from '../utils/logger';
 
 const { apiUrl, apiKey, emailTo } = config.services.resend;
 

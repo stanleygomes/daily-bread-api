@@ -1,12 +1,12 @@
 // import { fetchText } from '../services/huggingface.js';
 import { fetchText } from '../services/aiMlApi';
-import { find, create } from '@/services/mongoService';
-import { getCurrentDate } from '@/utils/dateFormat';
-import { loadFileContent } from '@/utils/file';
-import imageContent from '@/assets/image-list.json'
-import { logger } from '@/utils/logger';
-import { sendWithParams } from '@/services/resend';
-import { renderEmailHtml } from '@/utils/buildTemplate';
+import { find, create } from '../services/mongoService';
+import { getCurrentDate } from '../utils/dateFormat';
+import { loadFileContent } from '../utils/file';
+import imageContent from '../assets/image-list.json'
+import { logger } from '../utils/logger';
+import { sendWithParams } from '../services/resend';
+import { renderEmailHtml } from '../utils/buildTemplate';
 
 export async function processSendBread(refresh = false) {
   const today = getCurrentDate();
@@ -51,7 +51,7 @@ async function sendEmail(messageEmail) {
     }
   }
 
-  const html = renderEmailHtml(params, 'html', 'email.html');
+  const html = renderHtml(params, 'html', 'email.html');
   const subject = `🙏 Devocional do dia - ${params.title}`;
 
   await sendWithParams(subject, html)

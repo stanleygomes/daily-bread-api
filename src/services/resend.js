@@ -1,6 +1,6 @@
 import { Resend } from 'resend';
-import { config } from '@/config/config.js';
-import { logger } from '@/utils/logger';
+import { config } from '../config/config.js';
+import { logger } from '../utils/logger';
 
 const { apiKey, emailTo } = config.services.resend;
 const resend = new Resend(apiKey);

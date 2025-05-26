@@ -1,5 +1,5 @@
-import { MongoClient, ServerApiVersion } from 'mongodb';
-import { config } from '@/config/config';
+import { MongoClient } from 'mongodb';
+import { config } from '../config/config';
 
 const uri = config.databases.mongodb.uri;
 const dbName = process.env.MONGODB_DB || 'daily-bread';
