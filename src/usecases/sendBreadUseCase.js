@@ -5,7 +5,7 @@ import { getCurrentDate } from '../utils/dateFormat';
 import imageContent from '../assets/image-list.json'
 import { logger } from '../utils/logger';
 import { sendWithParams } from '../services/resend';
-import { renderEmailHtml } from '../utils/buildTemplate';
+import { renderHtml } from '../utils/buildTemplate';
 import { prompt } from '../assets/prompt'
 
 export async function processSendBread(refresh = false) {
