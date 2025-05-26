@@ -1,7 +1,7 @@
 // import 'module-alias/register';
-import { logger } from '@/utils/logger';
-import { validateRequest } from '@/middlewares/sendBread';
-import { processSendBread } from '@/usecases/sendBreadUseCase'
+import { logger } from '../src/utils/logger';
+import { validateRequest } from '../src/middlewares/sendBread';
+import { processSendBread } from '../src/usecases/sendBreadUseCase'
 
 export default async function handler(req, res) {
   const result = await validateRequest(req);
