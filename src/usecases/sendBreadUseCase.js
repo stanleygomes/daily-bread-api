@@ -2,16 +2,15 @@
 import { fetchText } from '../services/aiMlApi';
 import { find, create } from '../services/mongoService';
 import { getCurrentDate } from '../utils/dateFormat';
-import { loadFileContent } from '../utils/file';
 import imageContent from '../assets/image-list.json'
 import { logger } from '../utils/logger';
 import { sendWithParams } from '../services/resend';
 import { renderEmailHtml } from '../utils/buildTemplate';
+import { prompt } from '../assets/prompt'
 
 export async function processSendBread(refresh = false) {
   const today = getCurrentDate();
-  const prompt = loadFileContent('src/assets/prompt.txt');
-  let messageEmail = prompt;
+  let messageEmail = null;
 
   const bread = await find('breads', { date: today });
   if (bread.length == 0 || refresh === true) {

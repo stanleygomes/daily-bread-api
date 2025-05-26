@@ -1,3 +1,4 @@
+export const prompt = `
 Escolha um versículo da Bíblia que transmita um ensinamento, uma reflexão, uma lei ou um chamado — ou seja, que não seja apenas um trecho preso ao contexto histórico, mas que contenha um princípio atemporal, útil para orientação prática e espiritual profunda.
 
 A resposta deve estar no seguinte formato JSON:
@@ -22,3 +23,4 @@ A resposta deve estar no seguinte formato JSON:
 A reflexão devocional deve ser profunda, com foco em missão, transformação de vida, obediência e chamado. Evite superficialidade ou mensagens genéricas de conforto.
 
 Apenas responda com o objeto JSON. Não adicione comentários nem explicações fora do JSON.
+`;
