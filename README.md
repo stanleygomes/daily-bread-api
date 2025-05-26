@@ -2,6 +2,8 @@
 
 Daily Bread - A mensagem diária direto no e-mail
 
+![image](https://github.com/user-attachments/assets/15e0692f-b56d-461b-bf53-70f75098381a)
+
 This project is a Node.js backend application designed to be hosted on Vercel Functions. It provides an endpoint that triggers a request to the Hugging Face API, retrieves text based on a specified prompt, and sends that text via email to a designated address.
 
 ## Setup Instructions
