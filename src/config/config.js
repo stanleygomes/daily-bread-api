@@ -3,6 +3,8 @@ const {
   AIMLAPI_API_KEY,
   MONGODB_DATABASE,
   MONGODB_URI,
+  RESEND_API_KEY,
+  RESEND_EMAIL_TO,
 } = process.env;
 
 export const config = {
@@ -21,11 +23,17 @@ export const config = {
       accessToken: HUGGING_FACE_ACCESS_TOKEN,
     },
     aimlapi: {
-      apiUrl: 'https://api.aimlapi.com/v1/completions',
+      apiUrl: 'https://api.aimlapi.com/v1/chat/completions',
       apiKey: AIMLAPI_API_KEY,
       models: {
         text: 'gpt-4o-mini',
       },
+      maxTokens: 1500,
+    },
+    resend: {
+      apiUrl: 'https://api.resend.com/emails',
+      apiKey: RESEND_API_KEY,
+      emailTo: RESEND_EMAIL_TO,
     },
   },
 };

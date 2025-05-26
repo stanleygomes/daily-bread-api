@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    await processSendBread()
+    await processSendBread(req.query.refresh === 'true');
     return res.status(200).json({ message: 'Email sent successfully!' });
   } catch (error) {
     logger.error(error);

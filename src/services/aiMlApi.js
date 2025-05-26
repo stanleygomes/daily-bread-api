@@ -1,43 +1,34 @@
-import { logger } from '@/utils/logger';
+import axios from 'axios';
 import { config } from '@/config/config';
-import { OpenAI } from 'openai';
+import { logger } from '@/utils/logger';
 
-const apiUrl = config.services.aimlapi.apiUrl;
-const apiKey = config.services.aimlapi.apiKey;
+const { apiUrl, apiKey, maxTokens } = config.services.aimlapi;
 const model = config.services.aimlapi.models.text;
-
-const api = new OpenAI({
-  apiKey,
-  baseURL: apiUrl,
-});
 
 export const fetchText = async (prompt) => {
   const role = 'You are a pastor faithful to God and faithful to what is written in the Bible';
-  return fetch(prompt, role);
-};
-
-const fetch = async (prompt, role) => {
   try {
+    const response = await axios.post(
+      apiUrl,
+      {
+        model: model,
+        messages: [
+          { role: "system", content: role },
+          { role: "user", content: prompt }
+        ],
+        max_tokens: maxTokens,
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
 
-    const completion = await api.chat.completions.create({
-      model: model,
-      messages: [
-        {
-          role: "system",
-          content: role,
-        },
-        {
-          role: "user",
-          content: prompt,
-        },
-      ],
-    });
-
-    logger.info('Response from aimlapi.com:', completion);
-
-    return completion.choices[0].message.content
+    return response.data.choices?.[0]?.message?.content || response.data;
   } catch (error) {
-    logger.error('Error fetching text from aimlapi.com:', error);
+    logger.error('Error fetching text from aimlapi.com:', error.response?.data || error.message);
     throw new Error('Failed to fetch text from aimlapi.com API');
   }
 };
