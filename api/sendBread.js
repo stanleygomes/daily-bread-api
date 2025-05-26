@@ -1,4 +1,4 @@
-import 'module-alias/register';
+// import 'module-alias/register';
 import { logger } from '@/utils/logger';
 import { validateRequest } from '@/middlewares/sendBread';
 import { processSendBread } from '@/usecases/sendBreadUseCase'
