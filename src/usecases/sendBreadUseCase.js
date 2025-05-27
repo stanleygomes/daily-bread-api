@@ -7,6 +7,7 @@ import { logger } from '../utils/logger';
 import { sendWithParams } from '../services/resend';
 import { renderHtml } from '../utils/buildTemplate';
 import { prompt } from '../assets/prompt'
+import { BusinessError } from '../domain/errors/BusinessError';
 
 export async function processSendBread(refresh = false) {
   const today = getCurrentDate();
@@ -34,7 +35,7 @@ function getImage() {
 
   if (!images || images.length === 0) {
     logger.error("Lista de imagens vazia ou inválida.");
-    throw new Error("Lista de imagens vazia ou inválida.");
+    throw new BusinessError("Lista de imagens vazia ou inválida.");
   }
 
   const randomIndex = Math.floor(Math.random() * images.length);
@@ -50,7 +51,7 @@ async function sendEmail(messageEmail) {
     }
   }
 
-  const html = renderHtml(params, 'html', 'email.html');
+  const html = renderHtml(params, 'email', 'daily.html');
   const subject = `🙏 Devocional do dia - ${params.title}`;
 
   await sendWithParams(subject, html)
