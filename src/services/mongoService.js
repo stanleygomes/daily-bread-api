@@ -1,4 +1,5 @@
 import { connectToDatabase } from '../config/mongodb';
+import { ObjectId } from 'mongodb';
 
 export async function find(collection, query = {}) {
   const db = await connectToDatabase();
@@ -23,4 +24,9 @@ export async function update(collection, filter, updateDoc) {
 export async function remove(collection, filter) {
   const db = await connectToDatabase();
   return db.collection(collection).deleteOne(filter);
+}
+
+export async function findById(collection, id) {
+  const db = await connectToDatabase();
+  return db.collection(collection).findOne({ _id: new ObjectId(String(id)) });
 }
