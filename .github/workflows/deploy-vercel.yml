@@ -1,4 +1,4 @@
-name: Deploy to Vercel on Release
+# name: Deploy to Vercel on Release
 
 # on:
 #   release:
@@ -7,29 +7,29 @@ name: Deploy to Vercel on Release
 #       - 'v*.*.*'
 #       - '*.*.*'
 
-jobs:
-  vercel-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
+# jobs:
+#   vercel-deploy:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout repo
+#         uses: actions/checkout@v2
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
+#       - name: Setup Node.js
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: '20'
 
-      - name: Install dependencies
-        run: npm install
+#       - name: Install dependencies
+#         run: npm install
 
-      - name: Build project
-        run: npm run build
+#       - name: Build project
+#         run: npm run build
 
-      - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v20
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-organization: ${{ secrets.VERCEL_ORG }}
-          vercel-project: ${{ secrets.VERCEL_PROJECT }}
-          working-directory: ./vercel-node-backend
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+#       - name: Deploy to Vercel
+#         uses: amondnet/vercel-action@v20
+#         with:
+#           vercel-token: ${{ secrets.VERCEL_TOKEN }}
+#           vercel-organization: ${{ secrets.VERCEL_ORG }}
+#           vercel-project: ${{ secrets.VERCEL_PROJECT }}
+#           working-directory: ./vercel-node-backend
+#           github-token: ${{ secrets.GITHUB_TOKEN }}
