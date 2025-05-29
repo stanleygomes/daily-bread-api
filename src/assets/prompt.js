@@ -5,7 +5,7 @@ A resposta deve estar no seguinte formato JSON:
 
 {
   "title": "Título forte e marcante do devocional",
-  "verse": "Texto do versículo completo com referência (ex: Romanos 12:2 — \"E não vos conformeis com este mundo...\")",
+  "verse": "Texto do versículo completo com referência",
   "summary": "Resumo de 1 parágrafo explicando o sentido e o significado do versículo",
   "devotional": [
     "Parágrafo 1 da reflexão devocional profunda",
