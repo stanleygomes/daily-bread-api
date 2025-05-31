@@ -64,10 +64,21 @@
         margin: 0 0 10px 0;
         line-height: 1.6;
       }
+      .footer-columns {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-top: 24px;
+      }
       footer .rights {
         font-size: 14px;
         color: #888;
-        margin-top: 24px;
+      }
+      .more-devotionals a {
+        font-size: 14px;
+        color: #4E6688;
+        text-decoration: underline;
       }
       footer hr {
         border: 0;
@@ -103,7 +114,12 @@
       </div>
       <footer>
         <hr />
-        <span class="rights">From @DailyBread</span>
+        <div class="footer-columns">
+          <span class="rights">From @DailyBread</span>
+          <span class="more-devotionals">
+            <a href="https://daily-bread-omega.vercel.app/api/listBreads" target="_blank" rel="noopener">Devocionais</a>
+          </span>
+        </div>
       </footer>
     </div>
   </body>
