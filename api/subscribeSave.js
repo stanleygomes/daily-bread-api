@@ -5,7 +5,7 @@ import { subscribeSave } from '../src/usecases/subscriptionUseCase';
 import { BusinessError } from '../src/domain/errors/BusinessError';
 
 export default async function handler(req, res) {
-  const result = await validateRequest(req, false);
+  const result = await validateRequest(req, true);
   if (result.status !== 200) {
     return res.status(result.status).json({ message: result.message });
   }

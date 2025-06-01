@@ -1,17 +1,17 @@
 // import 'module-alias/register';
 import { logger } from '../src/utils/logger';
-import { validateRequest } from '../src/middlewares/subscribe';
-import { getFormSubscribe } from '../src/usecases/subscriptionUseCase';
+import { validateRequest } from '../src/middlewares/unsubscribe';
+import { getFormUnsubscribe } from '../src/usecases/subscriptionUseCase';
 import { BusinessError } from '../src/domain/errors/BusinessError';
 
 export default async function handler(req, res) {
-  const result = await validateRequest(req, false);
+  const result = await validateRequest(req, true);
   if (result.status !== 200) {
     return res.status(result.status).json({ message: result.message });
   }
 
   try {
-    const html = await getFormSubscribe();
+    const html = await getFormUnsubscribe();
     res.setHeader('Content-Type', 'text/html');
     return res.status(200).send(html);
   } catch (error) {
