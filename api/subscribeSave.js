@@ -1,7 +1,7 @@
 // import 'module-alias/register';
 import { logger } from '../src/utils/logger';
-import { validateRequest } from '../src/middlewares/subscribe';
-import { getForm } from '../src/usecases/subscriptionUseCase';
+import { validateRequest } from '../src/middlewares/subscribeSave';
+import { subscribeSave } from '../src/usecases/subscriptionUseCase';
 import { BusinessError } from '../src/domain/errors/BusinessError';
 
 export default async function handler(req, res) {
@@ -11,7 +11,8 @@ export default async function handler(req, res) {
   }
 
   try {
-    const html = await getForm();
+    const email = req.query.email;
+    const html = await subscribeSave(email);
     res.setHeader('Content-Type', 'text/html');
     return res.status(200).send(html);
   } catch (error) {
