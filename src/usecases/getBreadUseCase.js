@@ -19,9 +19,9 @@ export async function listBreads() {
     posts,
   };
 
-  const renderPosts = renderHtml(params, 'page', 'posts.html')
+  const renderPage = renderHtml(params, 'page', 'posts.html')
 
-  return renderHtml({ content: renderPosts }, 'page', 'layout.html');
+  return renderHtml({ content: renderPage }, 'page', 'layout.html');
 }
 
 export async function getBread(id) {
@@ -32,7 +32,7 @@ export async function getBread(id) {
     throw new BusinessError("Bread not found with the provided ID.");
   }
 
-  const renderPosts = renderHtml(bread, 'page', 'post.html')
+  const renderPage = renderHtml(bread, 'page', 'post.html')
 
-  return renderHtml({ content: renderPosts }, 'page', 'layout.html');
+  return renderHtml({ content: renderPage }, 'page', 'layout.html');
 }
