@@ -26,7 +26,7 @@ export async function subscribeSave(email) {
 }
 
 async function updateSubscription(email, enabled) {
-  let subscription = await findOne('subscription', { email: email });
+  let subscription = await findOne('subscribers', { email: email });
 
   if (!subscription) {
     subscription = {
@@ -34,9 +34,9 @@ async function updateSubscription(email, enabled) {
       enabled: enabled,
       created_at: new Date(),
     };
-    await create('subscription', subscription);
+    await create('subscribers', subscription);
   } else {
     subscription.enabled = enabled;
-    await update('subscription', { _id: subscription._id}, subscription);
+    await update('subscribers', { _id: subscription._id}, subscription);
   }
 }

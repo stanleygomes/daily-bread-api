@@ -4,7 +4,7 @@ import { find, create } from '../services/mongoService';
 import { getCurrentDate } from '../utils/dateFormat';
 import imageContent from '../assets/image-list.json'
 import { logger } from '../utils/logger';
-import { sendWithParams } from '../services/resend';
+import { sendBulkEmails } from '../services/resend';
 import { renderHtml } from '../utils/buildTemplate';
 import { prompt } from '../assets/prompt'
 import { BusinessError } from '../domain/errors/BusinessError';
@@ -51,8 +51,14 @@ function getImage() {
 }
 
 async function sendEmail(params) {
+  const subscribers = await find('subscribers', { enabled: true });
+  const emailToList = subscribers.map(subscriber => subscriber.email);
+
   const html = renderHtml(params, 'email', 'daily.html');
   const subject = `🙏 Devocional do dia - ${params.title}`;
 
-  await sendWithParams(subject, html)
+  console.log('subscribers', subscribers);
+  console.log('emailToList', emailToList);
+
+  await sendBulkEmails(emailToList, subject, html)
 }
