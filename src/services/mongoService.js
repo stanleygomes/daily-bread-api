@@ -1,9 +1,15 @@
 import { connectToDatabase } from '../config/mongodb';
 import { ObjectId } from 'mongodb';
 
-export async function find(collection, query = {}) {
+export async function find(collection, query = {}, sort = null) {
   const db = await connectToDatabase();
-  return db.collection(collection).find(query).toArray();
+  const cursor = db.collection(collection).find(query);
+
+  if (sort) {
+    cursor.sort(sort);
+  }
+
+  return cursor.toArray();
 }
 
 export async function findOne(collection, query = {}) {
