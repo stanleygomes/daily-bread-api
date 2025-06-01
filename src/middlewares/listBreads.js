@@ -17,6 +17,6 @@ export async function validateRequest(req, validateID = false) {
 
   return {
     status: 200,
-    message: 'Request is valid!',
+    message: 'Secret is valid!',
   };
 }

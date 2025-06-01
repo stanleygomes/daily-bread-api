@@ -1,6 +1,6 @@
 // import 'module-alias/register';
 import { logger } from '../src/utils/logger';
-import { validateRequest } from '../src/middlewares/getBread';
+import { validateRequest } from '../src/middlewares/listBreads';
 import { listBreads } from '../src/usecases/getBreadUseCase';
 import { BusinessError } from '../src/domain/errors/BusinessError';
 
