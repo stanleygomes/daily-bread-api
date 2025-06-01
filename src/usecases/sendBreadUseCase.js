@@ -15,16 +15,24 @@ export async function processSendBread(refresh = false) {
 
   const bread = await find('breads', { date: today });
   if (bread.length == 0 || refresh === true) {
+    const image = getImage()
+    const now = new Date()
     const message = await fetchText(prompt);
+
     const messageJSON = JSON.parse(message)
-    await create('breads', {
-      date: today,
-      message: messageJSON,
-    });
-    messageEmail = messageJSON;
+    const breadToCreate = {
+      ...messageJSON,
+      ...{
+        date: today,
+        created_at: now,
+        image: image,
+      }
+    }
+    await create('breads', breadToCreate);
+    messageEmail = breadToCreate;
   } else {
     const count = bread.length
-    messageEmail = bread[count - 1].message;
+    messageEmail = bread[count - 1];
   }
 
   await sendEmail(messageEmail)
@@ -42,15 +50,7 @@ function getImage() {
   return images[randomIndex];
 }
 
-async function sendEmail(messageEmail) {
-  const image = getImage()
-  const params = {
-    ...messageEmail,
-    ...{
-      imageUrl: image,
-    }
-  }
-
+async function sendEmail(params) {
   const html = renderHtml(params, 'email', 'daily.html');
   const subject = `🙏 Devocional do dia - ${params.title}`;
 

@@ -1,17 +1,16 @@
 // import { fetchText } from '../services/huggingface.js';
 import { find, findById } from '../services/mongoService';
-import imageContent from '../assets/image-list.json'
 import { logger } from '../utils/logger';
 import { renderHtml } from '../utils/buildTemplate';
 import { BusinessError } from '../domain/errors/BusinessError';
 
 export async function listBreads() {
-  const breadList = await find('breads');
+  const breadList = await find('breads', {}, { created_at: -1 });
 
   const posts = breadList.map(bread => {
     return {
-      title: bread.message.title,
-      verse: bread.message.verse,
+      title: bread.title,
+      verse: bread.verse,
       date: bread.date,
       link: `/api/getBread?id=${bread._id}`,
     };
@@ -27,32 +26,14 @@ export async function listBreads() {
 }
 
 export async function getBread(id) {
-  const breadList = await findById('breads', id);
+  const bread = await findById('breads', id);
 
-  if (!breadList) {
+  if (!bread) {
     logger.error("Bread not found with the provided ID.");
     throw new BusinessError("Bread not found with the provided ID.");
   }
 
-  const params = {
-    ...breadList.message,
-    date: breadList.date,
-    image: getImage(),
-  };
-
-  const renderPosts = renderHtml(params, 'page', 'post.html')
+  const renderPosts = renderHtml(bread, 'page', 'post.html')
 
   return renderHtml({ content: renderPosts }, 'page', 'layout.html');
-}
-
-function getImage() {
-  const { images } = imageContent
-
-  if (!images || images.length === 0) {
-    logger.error("Lista de imagens vazia ou inválida.");
-    throw new BusinessError("Lista de imagens vazia ou inválida.");
-  }
-
-  const randomIndex = Math.floor(Math.random() * images.length);
-  return images[randomIndex];
 }
