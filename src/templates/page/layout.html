@@ -36,6 +36,16 @@
         width: 100%;
         margin: 32px auto 0 auto;
       }
+      .top-link {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 15px;
+      }
+      .top-link a {
+        color: #4E6688;
+        text-decoration: underline;
+        font-size: 15px;
+      }
       .container-logo {
         width: 100%;
         display: flex;
@@ -87,7 +97,7 @@
       footer {
         max-width: 600px;
         width: 100%;
-        text-align: left;
+        text-align: center;
         margin: 15px 0;
         padding-top: 15px 0;
         /* border-top: 1px solid #ddd; */
@@ -95,6 +105,50 @@
       footer .rights {
         font-size: 14px;
         color: #888;
+      }
+      .subscribe-description {
+        font-size: 17px;
+        color: #333;
+        margin-bottom: 18px;
+        text-align: center;
+        line-height: 1.5;
+        font-weight: 400;
+        letter-spacing: 0.2px;
+      }
+      .subscribe-form {
+        display: flex;
+        gap: 8px;
+        width: 100%;
+        max-width: 340px;
+        margin: 0 auto 24px auto;
+        flex-direction: column;
+      }
+      .subscribe-input {
+        flex: 1;
+        padding: 8px 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 15px;
+        outline: none;
+        background: #fff;
+        color: #222;
+        transition: border 0.2s;
+      }
+      .subscribe-input:focus {
+        border-color: #4E6688;
+      }
+      .subscribe-btn {
+        padding: 8px 18px;
+        background: #222;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 15px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .subscribe-btn:hover {
+        background: #777;
       }
     </style>
     <!-- Google Fonts -->
@@ -105,6 +159,9 @@
   <body>
     <div class="page">
       <div class="container">
+        <div class="top-link">
+          <a href="/api/subscribe">Inscreva-se para receber por e-mail</a>
+        </div>
         <div class="container-logo">
           <a href="/api/listBreads">
             <img class="logo" src="https://i.postimg.cc/tbv35R1k/Chat-GPT-Image-May-27-2025-01-29-23-AM-1.png" alt="logo" />
