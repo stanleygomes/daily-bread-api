@@ -28,7 +28,7 @@ export const fetchText = async (prompt) => {
 
     return response.data.choices?.[0]?.message?.content || response.data;
   } catch (error) {
-    logger.error('Error fetching text from aimlapi.com:', error.response?.data || error.message);
+    logger.error(error);
     throw new Error('Failed to fetch text from aimlapi.com API');
   }
 };
