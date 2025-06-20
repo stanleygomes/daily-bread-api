@@ -1,0 +1,21 @@
+<div class="posts">
+  <div class="post">
+    <img class="image" src="{{image}}" alt="image" />
+      <h1>{{title}}</h1>
+      <div class="verse"><strong>"{{verse}}"</strong></div>
+      <div class="summary">{{summary}}</div>
+      <div class="prayer-title">Devocional</div>
+      <div class="devotional-section">
+        {{#devotional}}
+          <p>{{.}}</p>
+        {{/devotional}}
+      </div>
+      <div class="prayer-title">Oração</div>
+      <div class="prayer-section">
+        {{#prayer}}
+          <p>{{.}}</p>
+        {{/prayer}}
+      </div>
+    </div>
+  </div>
+</div>
