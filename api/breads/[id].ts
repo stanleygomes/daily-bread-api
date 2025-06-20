@@ -1,4 +1,4 @@
-import '../src/infra/providers/dependencies.js';
+import '../../src/infra/providers/dependencies.js';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { breadRoutes } from '../../src/infra/providers/dependencies.js';
 
