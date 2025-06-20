@@ -2,8 +2,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src-old/*"]
     }
   },
-  "include": ["src", "api"]
+  "include": ["src-old", "api", "src/shared/utils/date-format.ts", "src/shared/utils/template-renderer.ts"]
 }
