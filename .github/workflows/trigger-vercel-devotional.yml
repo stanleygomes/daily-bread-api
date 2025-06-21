@@ -10,4 +10,4 @@ jobs:
     steps:
       - name: Call Daily Bread API
         run: |
-          curl -X GET "https://daily-bread-omega.vercel.app/api/sendBread?secret=${{ secrets.SECRET_KEY }}"
+          curl -X GET "https://daily-bread-omega.vercel.app/api/breads/generate?secret=${{ secrets.SECRET_KEY }}&type=DEVOTIONAL&refresh=true"
