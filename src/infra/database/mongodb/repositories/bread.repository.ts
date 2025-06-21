@@ -5,6 +5,7 @@ import { BreadMapper } from '../mappers/bread.mapper.js';
 import { Logger } from '../../../logger/pino.logger.js'
 import type { IBreadRepository } from '../../../../domain/port/databases/bread.repository.js';
 import { BreadDocument, BreadModel } from '../schemas/bread.schema.js';
+import { BreadType } from '../../../../domain/enums/bread-type.enum.js';
 
 export class BreadMongoDBRepository implements IBreadRepository {
   private breadRepository = new MongoRepository(BreadModel);
@@ -47,7 +48,7 @@ export class BreadMongoDBRepository implements IBreadRepository {
     }
   }
 
-  async getByUUIDOrderedByDate(): Promise<Bread[]> {
+  async getOrderedByDateDesc(): Promise<Bread[]> {
     try {
       const docs = await this.breadRepository.find({}, { created_at: -1 });
 
@@ -58,13 +59,13 @@ export class BreadMongoDBRepository implements IBreadRepository {
     }
   }
 
-  async getByDate(date: string): Promise<Bread[]> {
+  async getByDateAndType(date: string, type: BreadType): Promise<Bread[]> {
     try {
-      const docs = await this.breadRepository.find({ date: date });
+      const docs = await this.breadRepository.find({ date: date, type: type });
       return docs.map(doc => BreadMapper.toEntity(doc));
     } catch (error) {
       this.logger.error(error);
-      throw new BusinessError('Error retrieving bread by date from database');
+      throw new BusinessError('Error retrieving bread by date and type from database');
     }
   }
 }

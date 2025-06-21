@@ -1,14 +1,12 @@
+import { BreadType } from "../enums/bread-type.enum.js";
+
 export interface Bread {
   _id?: string;
-  message: {
-    title?: string;
-    verse?: string;
-    summary?: string;
-    devotional?: string[];
-    prayer?: string[];
-    [key: string]: any;
-  };
+  uuid: string;
+  title: string;
+  type: BreadType;
+  message: string;
   date: string;
   created_at: Date | string;
-  image?: string;
+  image: string;
 }
