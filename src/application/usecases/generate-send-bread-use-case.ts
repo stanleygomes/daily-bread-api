@@ -8,6 +8,7 @@ import { IAIQueryService } from '../../domain/port/services/ai-query.service.js'
 import { IEmailService } from '../../domain/port/services/email.service.js';
 import { Logger } from '../../infra/logger/pino.logger.js';
 import { DateFormat } from '../../shared/utils/date-format.util.js';
+import { MarkdownUtil } from '../../shared/utils/markdown.util.js';
 import { TemplateRenderer } from '../../shared/utils/template-renderer.util.js';
 import { UUID } from '../../shared/utils/uuid.util.js';
 
@@ -25,6 +26,7 @@ export class GenerateSendBreadUseCase {
     let emailParams: Bread;
 
     const bread = await this.getBread(type);
+    
     if (!bread || refresh === true) {
       emailParams = await this.createBread(type);
     } else {
@@ -84,7 +86,11 @@ export class GenerateSendBreadUseCase {
     const subscribers = await this.subscriberRepository.getAllByEnabled(true)
     const emailToList = subscribers.map(subscriber => subscriber.email);
 
-    const html = TemplateRenderer.renderHtml(params, 'email/daily.html');
+    const html = TemplateRenderer.renderHtml({
+      ...params,
+      message: MarkdownUtil.toHtml(params.message),
+    }, 'email/daily.html');
+
     const subject = `🙏 Devocional do dia - ${params.title}`;
 
     await this.emailService.sendBulkEmails(emailToList, subject, html);

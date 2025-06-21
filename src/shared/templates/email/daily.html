@@ -97,7 +97,8 @@
   <body>
     <div class="container">
       <img class="image" src="{{image}}" alt="image" />
-      <h1>{{title}}</h1>
+      <div class="summary">{{{message}}}</div>
+      <!-- <h1>{{title}}</h1>
       <div class="verse"><strong>"{{verse}}"</strong></div>
       <div class="summary">{{summary}}</div>
       <div class="prayer-title">Devocional</div>
@@ -111,13 +112,13 @@
         {{#prayer}}
           <p>{{.}}</p>
         {{/prayer}}
-      </div>
+      </div> -->
       <footer>
         <hr />
         <div class="footer-columns">
           <span class="rights">From &nbsp;</span>
           <span class="more-devotionals">
-            <a href="https://daily-bread-omega.vercel.app/api/listBreads" target="_blank" rel="noopener">@DailyBread</a>
+            <a href="https://daily-bread-omega.vercel.app/api/breads" target="_blank" rel="noopener">@DailyBread</a>
           </span>
         </div>
       </footer>
