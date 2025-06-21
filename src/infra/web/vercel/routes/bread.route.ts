@@ -8,6 +8,8 @@ import { CorsMiddleware } from "../middlewares/cors.middleware.js";
 import { HttpMethodMiddleware } from "../middlewares/http-method.middleware.js";
 import { RequestHandlerMiddleware } from "../middlewares/request-handler.middleware.js";
 import { ResponseHandlerMiddleware } from "../middlewares/response-handler.middleware.js";
+import MarkdownIt from "markdown-it";
+import { MarkdownUtil } from "../../../../shared/utils/markdown.util.js";
 
 export class BreadRoutes {
   constructor(
@@ -47,7 +49,7 @@ export class BreadRoutes {
     if (HttpMethodMiddleware.ensure(req, res, 'GET')) return;
 
     const data = await this.getBreadListUseCase.execute();
-    const response = await this.renderPageUseUseCase.execute(data, 'page/posts.html')
+    const response = await this.renderPageUseUseCase.execute({ posts: data }, 'page/posts.html')
     ResponseHandlerMiddleware.html(res, response)
   });
 
@@ -57,7 +59,11 @@ export class BreadRoutes {
 
     const breadId = this.getQueryId(req);
     const data = await this.getBreadByIdUseCase.execute(breadId);
-    const response = await this.renderPageUseUseCase.execute(data, 'page/post.html')
+    const textHtml = MarkdownUtil.toHtml(data.message);
+    const response = await this.renderPageUseUseCase.execute({
+      ...data,
+      message: textHtml,
+    }, 'page/post.html');
     ResponseHandlerMiddleware.html(res, response)
   });
 

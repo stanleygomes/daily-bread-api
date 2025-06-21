@@ -6,7 +6,7 @@ export class GetBreadListUseCase {
   constructor(private readonly breadRepository: IBreadRepository) {}
 
   async execute(): Promise<Bread[]>  {
-    const breads = await this.breadRepository.getByUUIDOrderedByDate();
+    const breads = await this.breadRepository.getOrderedByDateDesc();
 
     if (!breads) {
       throw new BusinessError(`Breads is empty!`);
@@ -16,7 +16,7 @@ export class GetBreadListUseCase {
       return {
         ...bread,
         ...{
-          link: `/api/getBread?id=${bread._id}`,
+          link: `/api/breads/${bread.uuid}`,
         }
     }});
   }

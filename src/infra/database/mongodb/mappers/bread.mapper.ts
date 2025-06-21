@@ -5,11 +5,10 @@ export class BreadMapper {
   static toEntity(doc: BreadDocument): Bread {
     return {
       _id: doc._id?.toString(),
+      uuid: doc.uuid,
       title: doc.title,
-      verse: doc.verse,
-      summary: doc.summary,
-      devotional: doc.devotional,
-      prayer: doc.prayer,
+      type: doc.type,
+      message: doc.message,
       date: doc.date,
       created_at: doc.created_at,
       image: doc.image,
@@ -19,10 +18,9 @@ export class BreadMapper {
   static toDocument(entity: Bread): Partial<BreadDocument> {
     return {
       title: entity.title,
-      verse: entity.verse,
-      summary: entity.summary,
-      devotional: entity.devotional,
-      prayer: entity.prayer,
+      uuid: entity.uuid,
+      type: entity.type,
+      message: entity.message,
       date: entity.date,
       created_at: entity.created_at,
       image: entity.image,
