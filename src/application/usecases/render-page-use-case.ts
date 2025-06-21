@@ -1,4 +1,4 @@
-import { TemplateRenderer } from '../../shared/utils/template-renderer.js';
+import { TemplateRenderer } from '../../shared/utils/template-renderer.util.js';
 
 export class RenderPageUseUseCase {
   constructor() {}

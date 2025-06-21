@@ -1,7 +1,7 @@
 import { Subscriber } from '../../domain/entities/subscriber.entity.js';
 import { BusinessError } from '../../domain/errors/BusinessError.js';
 import { ISubscriberRepository } from '../../domain/port/databases/subscriber.repository.js';
-import { UUID } from '../../shared/utils/uuid.js';
+import { UUID } from '../../shared/utils/uuid.util.js';
 
 export class SetSubscriberEnabledUseCase {
   constructor(private readonly subscriberRepository: ISubscriberRepository) {}
