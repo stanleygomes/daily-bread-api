@@ -8,8 +8,8 @@ import { CorsMiddleware } from "../middlewares/cors.middleware.js";
 import { HttpMethodMiddleware } from "../middlewares/http-method.middleware.js";
 import { RequestHandlerMiddleware } from "../middlewares/request-handler.middleware.js";
 import { ResponseHandlerMiddleware } from "../middlewares/response-handler.middleware.js";
-import MarkdownIt from "markdown-it";
 import { MarkdownUtil } from "../../../../shared/utils/markdown.util.js";
+import { BreadType } from "../../../../domain/enums/bread-type.enum.js";
 
 export class BreadRoutes {
   constructor(
@@ -40,7 +40,13 @@ export class BreadRoutes {
     if (CorsMiddleware.apply(req, res)) return;
     if (HttpMethodMiddleware.ensure(req, res, 'GET')) return;
 
-    await this.generateSendBreadUseCase.execute();
+    const params = this.getQueryParamsGenerate(req);
+
+    await this.generateSendBreadUseCase.execute(
+      params.refresh === 'true',
+      params.type as BreadType,
+    );
+
     ResponseHandlerMiddleware.json(res, "OK!")
   });
 
@@ -68,14 +74,29 @@ export class BreadRoutes {
   });
 
   private getQueryId(req: VercelRequest): string {
-    if (typeof req.query.id === 'string') {
-      return req.query.id;
-    }
-    
-    if (Array.isArray(req.query.id)) {
-      return req.query.id[0]
+    return this.getQueryParam(req, 'id')!;
+  }
+
+  private getQueryParamsGenerate(req: VercelRequest) {
+    return {
+      refresh: this.getQueryParam(req, 'refresh'),
+      type: this.getQueryParam(req, 'type'),
+    };
+  }
+
+  private getQueryParam(req: VercelRequest, param: string, required: boolean = false): string | undefined {
+    const value = req.query[param];
+
+    if (typeof value === 'string') {
+      return value;
     }
 
-    throw new BusinessError("ID is required!");
+    if (Array.isArray(value)) {
+      return value[0];
+    }
+
+    if (required) {
+      throw new BusinessError(`${param} is required!`);
+    }
   }
 }
