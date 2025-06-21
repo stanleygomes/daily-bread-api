@@ -6,7 +6,7 @@ import { SetSubscriberEnabledUseCase } from '../../application/usecases/set-subs
 import { connectMongoose } from '../database/mongodb/connection.js';
 import { BreadMongoDBRepository } from '../database/mongodb/repositories/bread.repository.js';
 import { SubscriberMongoDBRepository } from '../database/mongodb/repositories/subscriber.repository.js';
-import { AiMlApiService } from '../services/ai-mlapi/ai-mlapi.service.js';
+import { GroqService } from '../services/groq/groq.service.js';
 import { ResendService } from '../services/resend/resend.service.js';
 import { BreadRoutes } from '../web/vercel/routes/bread.route.js';
 import { SubscriptionRoutes } from '../web/vercel/routes/subscription.route.js';
@@ -19,7 +19,7 @@ const subscriberRepository = new SubscriberMongoDBRepository();
 
 /* services */
 const emailService = new ResendService();
-const aIQueryService = new AiMlApiService();
+const aIQueryService = new GroqService();
 
 /* use cases */
 const getBreadListUseCase = new GetBreadListUseCase(
