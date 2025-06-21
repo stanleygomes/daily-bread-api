@@ -161,6 +161,8 @@ O deploy é automatizado e acontece a cada push na branch `master` para a Vercel
 
 O versionamento do projeto segue o [Semantic Versioning](https://semver.org/) e utiliza o pacote [`standard-version`](https://github.com/conventional-changelog/standard-version) para gerar changelog, atualizar a versão no `package.json` e criar tags automaticamente com base nos commits.
 
+Para ver todas as mudanças e versões, consulte o nosso [CHANGELOG.md](./CHANGELOG.md).
+
 Para criar uma nova versão, gere changelog, commit e tag, execute:
 
 ```bash
