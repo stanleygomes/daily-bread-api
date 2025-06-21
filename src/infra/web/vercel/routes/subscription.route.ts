@@ -15,7 +15,7 @@ export class SubscriptionRoutes {
   subscribe = RequestHandlerMiddleware.asyncHandler(async (req: VercelRequest, res: VercelResponse): Promise<void> => {
     if (CorsMiddleware.apply(req, res)) return;
 
-    const email = this.getQueryEmail(req);
+    const email = this.getBodyEmail(req);
     const data = await this.setSubscriberEnabledUseCase.execute(email, true);
     const response = await this.renderPageUseUseCase.execute(data, 'page/subscribe-success.html')
     ResponseHandlerMiddleware.html(res, response)
@@ -24,7 +24,7 @@ export class SubscriptionRoutes {
   unsubscribe = RequestHandlerMiddleware.asyncHandler(async (req: VercelRequest, res: VercelResponse): Promise<void> => {
     if (CorsMiddleware.apply(req, res)) return;
 
-    const email = this.getQueryEmail(req);
+    const email = this.getBodyEmail(req);
     const data = await this.setSubscriberEnabledUseCase.execute(email, false);
     const response = await this.renderPageUseUseCase.execute(data, 'page/unsubscribe-success.html')
     ResponseHandlerMiddleware.html(res, response)
@@ -47,12 +47,23 @@ export class SubscriptionRoutes {
   });
 
   private getQueryEmail(req: VercelRequest): string {
+    console.log('req.query', req.query);
+    console.log('req.body', req.body);
+    
     if (typeof req.query.email === 'string') {
       return req.query.email;
     }
-    
+
     if (Array.isArray(req.query.email)) {
       return req.query.email[0]
+    }
+
+    throw new BusinessError("E-mail is required!");
+  }
+
+  private getBodyEmail(req: VercelRequest): string {
+    if (typeof req.body.email === 'string') {
+      return req.body.email;
     }
 
     throw new BusinessError("E-mail is required!");
