@@ -135,7 +135,7 @@ export class GenerateSendBreadUseCase {
 
         O conteúdo deve conter os seguintes blocos, com títulos destacados, emojis moderados e organização visual agradável:
 
-        ✨ Versículo do Dia
+        # Versículo do Dia
 
         Escolha um versículo significativo (preferencialmente na versão Almeida Revista e Atualizada). Explique seu contexto e como ele pode ser aplicado na vida prática.
         ➤ Traga versículos variados a cada edição, incluindo trechos menos populares da Bíblia, de diferentes livros (Antigo e Novo Testamento), evitando repetições frequentes.
@@ -169,7 +169,7 @@ export class GenerateSendBreadUseCase {
 
         Instruções gerais:
 
-        - Use um tom informal, respeitoso e acolhedor.
+        - Use um tom informal, mas que seja direto, sem girias.
         - Utilize emojis com moderação, apenas nos títulos ou onde for útil.
         - O conteúdo deve ser fiel às Escrituras, centrado em Cristo e teologicamente sólido.
         - Evite repetições entre dias. Priorize variedade e profundidade.
