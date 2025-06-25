@@ -135,7 +135,7 @@ export class GenerateSendBreadUseCase {
 
         O conteúdo deve conter os seguintes blocos, com títulos destacados, emojis moderados e organização visual agradável:
 
-        # Versículo do Dia
+        ✨ Versículo do Dia
 
         Escolha um versículo significativo (preferencialmente na versão Almeida Revista e Atualizada). Explique seu contexto e como ele pode ser aplicado na vida prática.
         ➤ Traga versículos variados a cada edição, incluindo trechos menos populares da Bíblia, de diferentes livros (Antigo e Novo Testamento), evitando repetições frequentes.
