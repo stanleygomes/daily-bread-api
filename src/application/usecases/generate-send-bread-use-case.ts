@@ -26,7 +26,7 @@ export class GenerateSendBreadUseCase {
     let emailParams: Bread;
 
     const bread = await this.getBread(type);
-    
+
     if (!bread || refresh === true) {
       emailParams = await this.createBread(type);
     } else {
@@ -91,7 +91,7 @@ export class GenerateSendBreadUseCase {
       message: MarkdownUtil.toHtml(params.message),
     }, 'email/daily.html');
 
-    const subject = `🙏 Devocional do dia - ${params.title}`;
+    const subject = `🙏 ${params.title}`;
 
     await this.emailService.sendBulkEmails(emailToList, subject, html);
   }
