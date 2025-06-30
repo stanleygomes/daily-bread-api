@@ -24,14 +24,19 @@ export class GroqChatCompletionMessageMapper {
 
   private static parseResponse(response: GroqChatCompletionResponse): BreadMessage {
     const raw = response.choices?.[0]?.message?.content ?? '';
-    const firstLine = raw
+
+    // Encontra a primeira linha não vazia para usar como título potencial
+    const firstLine =
+      raw
       .split('\n')
-      .find(line => line.trim().length > 0)
-      ?.replace(/^#\s*/, '')
-      .trim();
+      .find((line) => line.trim().length > 0)
+      ?.trim() ?? '';
+
+    // Remove a formatação markdown do título, tratando os casos '# Título' e '**Título**'
+    const title = firstLine.replace(/^#\s*|^\*\*|\*\*$/g, '').trim();
 
     return {
-      title: firstLine!,
+      title: title,
       text: raw,
     };
   }
