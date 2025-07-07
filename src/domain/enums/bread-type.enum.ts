@@ -1,5 +1,5 @@
 export enum BreadType {
   DEVOTIONAL = 'DEVOTIONAL',
   STUDY = 'STUDY',
+  CHARACTER_FACT = 'CHARACTER_FACT',
 }
-
